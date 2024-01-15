@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Chat App</title>
+</head>
+<body>
+<div id="chat-box"></div>
+<input type="text" id="message" placeholder="Enter message"/>
+<button onclick="connect()">start</button>
+<button onclick="sendMessage()">Send</button>
+<button onclick="webSocket.close();">Stop</button>
+
+<script>
+let webSocket;
+const chatBox = document.getElementById('chat-box');
+const messageInput = document.getElementById('message');
+
+function connect() {
+    const webSocketURL = 'wss://20dij5hxsh.execute-api.eu-west-1.amazonaws.com/dev'; // Replace with your WebSocket URL
+    webSocket = new WebSocket(webSocketURL);
+
+    webSocket.onmessage = message => chatBox.innerHTML += '<div>' + JSON.parse(message.data).message + '</div>';
+    webSocket.onopen = () => chatBox.innerHTML += '<div>Connected!</div>';
+    webSocket.onclose = () => chatBox.innerHTML += '<div>Disconnected!</div>';
+}
+
+function sendMessage() {
+    webSocket.send(JSON.stringify({ message: messageInput.value }));
+    messageInput.value = '';
+}
+</script>
+</body>
+</html>
