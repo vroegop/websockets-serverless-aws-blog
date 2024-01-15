@@ -1,8 +1,8 @@
-# Welcome to your CDK TypeScript project
+# Welcome to the CDK Serverless Chat Application
 
-This is a blank project for CDK development with TypeScript.
+This is a CDK project for AWS with code examples for a blog.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+The `cdk.json` file tells the CDK Toolkit how to execute this app.
 
 ## Useful commands
 
